@@ -20,7 +20,7 @@ export class ServicesComponent implements OnInit {
       icon:'bi bi-arrow-right'
     },
     {
-      data_aos:'fade-right',
+      data_aos:'fade-left',
       url:'assets/img/services-2.jpg',
       title:'Aperiores voluptates',
       desc:'Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo',
@@ -28,7 +28,7 @@ export class ServicesComponent implements OnInit {
       icon:'bi bi-arrow-right'
     },
     {
-      data_aos:'fade-left',
+      data_aos:'fade-right',
       url:'assets/img/services-3.jpg',
       title:'Veritatis natus nisi',
       desc:'Nemo enim ipsam voluptatem quia voluptas sit aut odit aut fugit, sed quia magni dolores eos qui ratione voluptatem sequi nesciunt Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet',

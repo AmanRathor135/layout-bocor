@@ -1,68 +1,162 @@
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact section-bg">
-     <div class="container" data-aos="fade-up">
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="contact section-bg">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title">
+      <h2>{{ title }}</h2>
+      <p>
+        {{ description }}
+      </p>
+    </div>
 
-       <div class="section-title">
-         <h2>Contact</h2>
-         <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-       </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="row">
+          <div
+            class="col-md-12"
+            *ngFor="let item of contact"
+            [ngClass]="{
+              'col-lg-12': item.name == 'Our Address',
+              'col-lg-6 mt-4': item.name != 'Our Address'
+            }"
+          >
+            <div class="info-box" data-aos="fade-up">
+              <i class="bx bx-map"></i>
+              <h3>{{ item.name }}</h3>
+              <!-- <p>{{item.data}}</p> -->
+              <p *ngFor="let val of item.data">{{ val }}</p>
+            </div>
+          </div>
+          <!-- <div class="col-md-6">
+            <div class="info-box mt-4" data-aos="fade-up" data-aos-delay="100">
+              <i class="bx bx-envelope"></i>
+              <h3>Email Us</h3>
+              <p>info@example.com<br />contact@example.com</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="info-box mt-4" data-aos="fade-up" data-aos-delay="100">
+              <i class="bx bx-phone-call"></i>
+              <h3>Call Us</h3>
+              <p>+1 5589 55488 55<br />+1 6678 254445 41</p>
+            </div>
+          </div> -->
+        </div>
+      </div>
 
-       <div class="row">
-
-         <div class="col-lg-6">
-
-           <div class="row">
-             <div class="col-md-12">
-               <div class="info-box" data-aos="fade-up">
-                 <i class="bx bx-map"></i>
-                 <h3>Our Address</h3>
-                 <p>A108 Adam Street, New York, NY 535022</p>
-               </div>
-             </div>
-             <div class="col-md-6">
-               <div class="info-box mt-4" data-aos="fade-up" data-aos-delay="100">
-                 <i class="bx bx-envelope"></i>
-                 <h3>Email Us</h3>
-                 <p>info@example.com<br>contact@example.com</p>
-               </div>
-             </div>
-             <div class="col-md-6">
-               <div class="info-box mt-4" data-aos="fade-up" data-aos-delay="100">
-                 <i class="bx bx-phone-call"></i>
-                 <h3>Call Us</h3>
-                 <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
-               </div>
-             </div>
-           </div>
-
-         </div>
-
-         <div class="col-lg-6 mt-4 mt-lg-0">
-           <form action="forms/contact.php" method="post" role="form" class="php-email-form w-100" data-aos="fade-up">
-             <div class="row">
-               <div class="col-md-6 form-group">
-                 <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-               </div>
-               <div class="col-md-6 form-group mt-3 mt-md-0">
-                 <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-               </div>
-             </div>
-             <div class="form-group mt-3">
-               <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-             </div>
-             <div class="form-group mt-3">
-               <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-             </div>
-             <div class="my-3">
-               <div class="loading">Loading</div>
-               <div class="error-message"></div>
-               <div class="sent-message">Your message has been sent. Thank you!</div>
-             </div>
-             <div class="text-center"><button type="submit">Send Message</button></div>
-           </form>
-         </div>
-
-       </div>
-
-     </div>
-   </section><!-- End Contact Section -->
+      <div class="col-lg-6 mt-4 mt-lg-0">
+        <form
+          name="form"
+          #form="ngForm"
+          autocomplete="off"
+          novalidate
+          data-aos="fade-up"
+        >
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <input
+                type="text"
+                name="name"
+                class="form-control"
+                id="name"
+                #name="ngModel"
+                [(ngModel)]="dataForm.name"
+                placeholder="Your Name"
+                required
+              />
+              <div *ngIf="!name?.valid && (form?.submitted || name?.touched)" class="error">
+                <ul>
+                  <li *ngIf="name.hasError('required')" style="color: red">
+                    Last Name is required
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-6 form-group mt-3 mt-md-0">
+              <input
+                type="text"
+                class="form-control"
+                name="email"
+                id="email"
+                #email="ngModel"
+                [(ngModel)]="dataForm.email"
+                placeholder="Your Email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                required
+              />
+              <div *ngIf="!email?.valid && (form?.submitted || email?.touched)" class="error">
+                <ul>
+                  <li *ngIf="email.hasError('required')" style="color: red">
+                    E-mail is required
+                  </li>
+                  <li *ngIf="email.hasError('pattern')" style="color: red">
+                    Invalid E-mail Address
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <input
+              type="text"
+              class="form-control"
+              name="subject"
+              id="subject"
+              #subject="ngModel"
+              [(ngModel)]="dataForm.subject"
+              placeholder="Subject"
+              required
+            />
+            <div *ngIf="!subject?.valid && (form?.submitted || subject?.touched)" class="error">
+              <ul>
+                <li *ngIf="subject.hasError('required')" style="color: red">
+                  Subject is required
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <textarea
+              class="form-control"
+              name="message"
+              #address="ngModel"
+              [(ngModel)]="dataForm.address"
+              rows="5"
+              placeholder="Message"
+              required
+            >
+          </textarea>
+          <div *ngIf="!address?.valid && (form?.submitted || address?.touched)" class="error">
+            <ul>
+              <li *ngIf="address.hasError('required')" style="color: red">
+                Address is required
+              </li>
+            </ul>
+          </div>
+          </div>
+          
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-warning" (click)="sendMessage()">Send Message</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container mb-2" data-aos="fade-up">
+  <div style="width: 100%">
+    <iframe
+      width="100%"
+      height="400"
+      frameborder="0"
+      scrolling="no"
+      marginheight="0"
+      marginwidth="0"
+      src="https://maps.google.com/maps?width=100%25&amp;height=400&amp;hl=en&amp;q=A108%20Adam%20Street,%20New%20York,%20NY%20535022+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+    >
+      <a href="https://www.maps.ie/distance-area-calculator.html"
+        >measure area map</a
+      >
+    </iframe>
+  </div>
+</div>
+<!-- End Contact Section -->

@@ -1,0 +1,9 @@
+.strike{
+     text-decoration: line-through;
+     color: lightgrey;
+}
+
+.bx-x::before{
+     content: "\ec8d" ;
+     color: lightgrey ;
+}

@@ -7,24 +7,24 @@
          <p data-aos="fade-in">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
        </div>
 
-       <div class="row content">
-         <div class="col-md-5" data-aos="fade-right">
-           <img src="assets/img/features-1.svg" class="img-fluid" alt="">
+       <div class="row content" *ngFor="let item of features; let i = index">
+         <div class="col-md-5" [attr.data-aos]="item.data_aos1" [ngClass]="{'order-1 order-md-2':(i+1)%2 == 0}">
+           <img src="{{item.url}}" class="img-fluid" alt="">
          </div>
-         <div class="col-md-7 pt-4" data-aos="fade-left">
-           <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+         <div class="col-md-7 pt-4" [attr.data-aos]="item.data_aos2"  [ngClass]="{'pt-5 order-2 order-md-1':(i+1)%2 == 0,'pt-4':(i+1)%1 == 0}">
+           <h3>{{item.title}}</h3>
            <p class="fst-italic">
-             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-             magna aliqua.
+             {{item.desc}}
            </p>
-           <ul>
-             <li><i class="bi bi-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-             <li><i class="bi bi-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+           <ul *ngIf="item.feature.length>1">
+             <li *ngFor="let item of item.feature"><i class="bi bi-check"></i>{{item}}</li>
+             <!-- <li><i class="bi bi-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li> -->
            </ul>
+           <div  *ngIf="item.feature.length<=1">{{item.feature}}</div>
          </div>
        </div>
 
-       <div class="row content">
+       <!-- <div class="row content">
          <div class="col-md-5 order-1 order-md-2" data-aos="fade-left">
            <img src="assets/img/features-2.svg" class="img-fluid" alt="">
          </div>
@@ -73,7 +73,7 @@
              culpa qui officia deserunt mollit anim id est laborum
            </p>
          </div>
-       </div>
+       </div> -->
 
      </div>
    </section><!-- End Features Section -->

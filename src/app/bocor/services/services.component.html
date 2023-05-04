@@ -9,7 +9,7 @@
 
        <div class="row">
          <ng-container *ngFor="let item of services">
-          <div class="col-md-6 d-flex" data-aos="fade-right">
+          <div class="col-md-6 d-flex" [attr.data-aos]="item.data_aos">
             <div class="card">
               <div class="card-img">
                 <img src="{{item.url}}" alt="...">

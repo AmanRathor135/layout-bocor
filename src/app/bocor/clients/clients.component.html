@@ -4,11 +4,11 @@
 
        <div class="row no-gutters clients-wrap clearfix wow fadeInUp" >
 
-        <ng-container *ngFor="let item of clients">
+        <ng-container *ngFor="let item of clients; let i=index;">
 
           <div class="col-lg-2 col-md-4 col-6">
             <div class="client-logo">
-              <img src="{{item.url}}" class="img-fluid" alt="" data-aos="flip-right">
+              <img src="{{item.url}}" class="img-fluid" alt="" data-aos="flip-right" [attr.data-aos-delay]="i*100">
             </div>
           </div>
         </ng-container>

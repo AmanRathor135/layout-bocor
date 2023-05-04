@@ -13,6 +13,7 @@ import { TeamComponent } from './team/team.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { FAQComponent } from './faq/faq.component';
 import { ContactComponent } from './contact/contact.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ContactComponent } from './contact/contact.component';
   ],
   imports: [
     CommonModule,
-    BocorRoutingModule
+    BocorRoutingModule,
+    FormsModule
   ]
 })
 export class BocorModule { }
